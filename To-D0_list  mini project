@@ -1,0 +1,118 @@
+import java.util.*;
+public class ToDoList {
+	public static ArrayList<String> Incomplete_list= new ArrayList<>();
+	public static ArrayList<String> Completed_list= new ArrayList<>();
+	
+	
+	public static void main(String[] args) {
+		 Scanner s = new Scanner(System.in);
+		int c;
+		do {
+			
+			System.out.print("Enter 1 to add a task"+"\n"+"2 to delete a task"+"\n"+"3 to display the number of tasks"+"\n"+"4 to mark the task as completed"+"\n"+"Enter the choice:");
+			int check=s.nextInt();
+			System.out.println();
+			switch(check) {
+			case 1:add();
+			break;
+			case 2:delete();
+			break;
+			case 3:display();
+			break;
+			case 4:markAsComplete();
+			break;
+			default:
+				System.out.println("Invalid Entry");
+			}
+			
+			System.out.print("Enter 1 to continue 0 to discard:");
+			  c=s.nextInt();
+			  System.out.println();
+			while(c<0||c>1) {
+				  System.out.println();
+				System.out.println("please enter the valid key");
+				System.out.print("Enter 1 to continue 0 to discard: ");
+				c=s.nextInt();
+				System.out.println();
+			}
+		}while(c==1);
+		System.out.println();
+		  System.out.println("Good bye!");
+		
+	}
+
+	
+	 
+	public static void add() {
+		 Scanner s = new Scanner(System.in);
+		System.out.print("Please enter the name of the task:");
+		Incomplete_list.add(s.nextLine());
+		System.out.println();
+		
+	}
+	public static void delete() {
+		 Scanner sc = new Scanner(System.in);
+		 System.out.print("Enter the name of the task:");
+		 String str=sc.nextLine();
+		 if( Incomplete_list.contains(str)) {
+			 Incomplete_list.remove(str);
+			 System.out.println(">>>Task "+str+" deleted successsfully<<<");
+			 System.out.println();
+		 }
+		 else if(Completed_list.contains(str)) {
+			 
+			 Completed_list.remove(str);
+			 System.out.println(">>>Task "+str+" deleted successsfully<<<");
+			 System.out.println();
+		 }
+		 else {
+			 System.out.print("No such task found");
+			 System.out.println();
+		 }
+		
+	}
+	public static void display() {
+		Scanner sz = new Scanner(System.in);
+		while(true) {
+			System.out.print("Enter 1 to display Incomplete_task & 2 to display Completed_list:");
+			System.out.println();
+			int scan=sz.nextInt();
+			if(scan==1) {
+				System.out.println("Incomplete List"+"\n"+"------------------------------");
+				System.out.println(Incomplete_list);
+				 System.out.println();
+			break;
+			}
+			else if(scan==2) {
+				System.out.println("Completed List"+"\n"+"------------------------------");
+				System.out.println(Completed_list);
+				 System.out.println();
+				break;
+			}
+			else {
+				System.out.println("Please enter a valid key");
+			}
+			
+		}
+		
+	}
+	
+	
+	public static void markAsComplete() {
+		 Scanner s = new Scanner(System.in);
+		System.out.println("Please enter the name of the task to be marked as completed:");
+		String check=s.nextLine();
+		if(Incomplete_list.contains(check)) {
+			Incomplete_list.remove(check);
+			Completed_list.add(check);
+		}
+			
+		else
+			System.out.print(check+" task not found");
+		 System.out.println();
+		
+	}
+	
+	
+
+}
